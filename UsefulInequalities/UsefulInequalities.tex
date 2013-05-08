@@ -1,0 +1,108 @@
+\documentclass[]{amsart}
+\usepackage{amsmath,amssymb,amsthm,natbib,mathtools,graphicx}
+\input FJHDef.tex
+
+\begin{document}
+
+\title{Useful Inequalities}
+\author{Fred J. Hickernell}
+\address{Room E1-208, Department of Applied Mathematics, Illinois Institute of Technology, 10 W.\ 32$^{\text{nd}}$ St., Chicago, IL 60616}
+
+\maketitle
+
+There are some inequalities that get used over and over by me.  Here they are summarized for easy reference.
+
+\section{H\"older's Inequality and Its Generalizations}
+
+Let $\{a_i\}_{i \in \ci}$, and $\{b_i\}_{i \in \ci}$ be two finite or countably infinite sequences of complex numbers.   H\"older's inequality states that 
+\begin{subequations} \label{HolIneq}
+\begin{multline} \label{HolIneqa}
+\bigg\lvert \sum_{i \in \ci} a_i b_i \bigg \rvert \le \sum_{i \in \ci} \abs{a_i b_i} = \norm[1]{(a_ib_i)_{i \in \ci}} \le \norm[p]{(a_i)_{i \in \ci}} \norm[q]{(b_i)_{i \in \ci}}, \\ 
+1 \le p, q \le \infty, \quad  \frac{1}{p} + \frac{1}{q} = 1, \text{ i.e., } q= \frac{p}{p-1}.
+\end{multline}
+Moreover, in the above inequality, 
+\begin{equation}
+\text{equality holds if } \abs{a_i}^{p-1}\abs{b_i}^{-1} \text{ is constant } \forall i \in \ci.
+\end{equation}
+\end{subequations}
+
+This inequality can be generalized.  Choose any $r>1$.  It follows from \label{HolIneqa} that
+\begin{multline*}
+\norm[r]{(a_ib_i)_{i \in \ci}} = \norm[1]{(a_i^rb_i^r)_{i \in \ci}}^{1/r}  \le \norm[p]{(a_i^r)_{i \in \ci}}^{1/r} \norm[q]{(b_i^r)_{i \in \ci}}^{1/r}\\
+ = \norm[pr]{(a_i)_{i \in \ci}} \norm[qr]{(b_i)_{i \in \ci}}, \qquad 
+1 \le p, q \le \infty, \quad  \frac{1}{p} + \frac{1}{q} = 1, \text{ i.e., } q= \frac{p}{p-1}.
+\end{multline*}
+By change of notation, this may be re-written as
+\begin{subequations} \label{GenHolIneq}
+\begin{equation} \label{GenHolIneqa}
+\norm[r]{(a_ib_i)_{i \in \ci}} \le \norm[p]{(a_i)_{i \in \ci}} \norm[q]{(b_i)_{i \in \ci}}, \qquad
+1 \le r \le p, q \le \infty, \quad  q= \frac{pr}{p-r}.
+\end{equation}
+Moreover, in the above inequality, 
+\begin{equation}
+\text{equality holds if } \abs{a_i}^{p-1}\abs{b_i}^{-1} \text{ is constant } \forall i \in \ci.
+\end{equation}
+\end{subequations}
+This provides an bound on an $r$-norm of a vector whose components are products of two terms as a product of the $p$-norm of the vector of one factor and the $q$-norm of the vector of the other factors, where $p$ and $q$ are both no smaller than $r$.
+
+\section{Opposite Direction Inequality}
+
+For any $r \ge 1$, define the function $f(a)= (1+a)^r -1 - a$.  Since $f(0)=0$, and $f'(a)=r[(1+a)^{r-1}-a^{r-1}]\ge 0$ for all $a\ge 0$, it follows that $f(a)\ge 0$ and so
+\[
+1 + a^ r \le (1+a)^r \quad \forall a\ge 0, \ r \ge 1.
+\] 
+This can be generalized to 
+\[
+a^r + b^ r \le (a+b)^r \quad \forall a,b\ge 0, \ r \ge 1.
+\] 
+Now we prove
+\[
+a_1^r + \cdots + a_n^ r \le (a_1 + \cdots + a_n)^r \quad \forall a_i\ge 0, \ r \ge 1,
+\] 
+by induction.  It is already true for $n=2$.  Suppose it is true for $n=N$, and consider $n=N+1$.  It follows that 
+\begin{align*}
+a_1^r + \cdots + a_{N+1}^ r &\le a_1^r + \cdots + a_{N-1}^r+b^r, \quad b=a_N+a_{N+1}\\
+& \le (a_1 + \cdots + a_{N-1}+b)^r \\
+& = (a_1 + \cdots + a_{N-1}+a_N+a_{N+1})^r,
+\end{align*} 
+thus completing the proof.  Therefore, we have
+\begin{equation} \label{OppIneq}
+\norm[r]{(a_i)_{i \in \ci}} \le \norm[p]{(a_i)_{i \in \ci}}, \qquad
+1 \le p \le r \le \infty.
+\end{equation}
+Moreover, in the above inequality, equality holds if exactly one $a_i$ is nonzero.  Going further, we can can conclude that
+\begin{equation} \label{GenOppIneq}
+\norm[r]{(a_ib_i)_{i \in \ci}} \le \norm[p]{(a_i)_{i \in \ci}} \norm[\infty]{(b_i)_{i \in \ci}}, \qquad 1 \le p \le r \le \infty,
+\end{equation}
+with equality holding if exactly one $a_i=0$ for all $i \ne j$ and $b_j=\norm[\infty]{(b_i)_{i \in \ci}}$. Combining this inequality with \eqref{GenHolIneqa} it yields
+\begin{equation}
+\norm[r]{(a_ib_i)_{i \in \ci}} \le \norm[p]{(a_i)_{i \in \ci}} \norm[q]{(b_i)_{i \in \ci}}, \qquad
+1 \le r, p \le \infty, \quad  q= \frac{pr}{\max(p-r,0)}.
+\end{equation}
+
+
+\section{Jensen's Inequality and Its Generalizations}
+
+Let $\phi$ be a convex function, i.e., 
+\begin{equation*}
+\phi( (1-\lambda) a + \lambda b) \le (1-\lambda) \phi(a) + \lambda \phi(b) \qquad \forall a,b, \lambda \text{ with } 0 \le \lambda \le 1.
+\end{equation*}
+It then follows by induction that 
+\begin{multline} \label{JensenIneq}
+\phi( \lambda_1 a_1 + \cdots + \lambda_n a_n ) \le \lambda_1 \phi(a_1) + \cdots + \lambda_n \phi(a_n) \\ 
+\forall a_1, \ldots, a_n,  \lambda_1 , \ldots, \lambda_n \text{ with } 0 \le \lambda_i \le 1 \ \& \ \lambda_1 + \cdots + \lambda_n = 1.
+\end{multline}
+
+For example, if $-\infty < p \le q < \infty$, define $a_i=b_i^p$, where $b_i>0$, and note that $\phi: x \mapsto x^{q/p}$ is convex.  It follows from \eqref{JensenIneq} that
+\begin{multline} \label{JensenIneq}
+( \lambda_1 b_1^p + \cdots + \lambda_n b_n^p )^{1/p} \le (\lambda_1 b_1^q + \cdots + \lambda_n b^q)^{1/q} \\ 
+\forall b_1, \ldots, b_n,  \lambda_1 , \ldots, \lambda_n \text{ with } b_i>0, \ 0 \le \lambda_i \le 1 \ \& \ \lambda_1 + \cdots + \lambda_n = 1.
+\end{multline}
+This means that the weighted $p$-mean is no greater than the weighted $q$-mean.  If all the $b_i$ are the same, then the two means are equal.
+
+
+
+\bibliographystyle{amsalpha}
+\bibliography{FJH22,FJHown22}
+\end{document}
+
